@@ -1,0 +1,44 @@
+python virtual environments
+
+create virtual environment
+python3 -m venv venv/       # Creates an environment called venv/ can create week_6/ instead of venv/
+
+activate virtual environment
+source venv/bin/activate (venv == virtual environment created folder, if env folder is week_6 week_6/bin/activate)
+
+deactivate the environment
+deactivate
+
+list the installed packages
+pip list
+
+to install a new package
+pip install numpy==1.22.3
+
+lists installed third party packages along with their version numbers
+pip freeze
+
+write output to a file
+pip freeze > requirements.txt
+
+
+To reproduce the environment in another system
+python3 -m venv venv/
+source venv/bin/activate
+pip install -r requirements.txt
+
+
+Troubleshooting
+% rm -r venv/
+% python3 -m venv venv/
+% pip install -r requirements.txt 
+
+
+$ python3 -m venv test_venv_1
+$ source test_venv_1/Scripts/activate
+$ deactivate
+
+
+To update pip
+Pip install -U pip
+to fix permission denied issue, give full permission for the folder from 
