@@ -1,0 +1,62 @@
+3. 
+df \
+.withColumn('pickup_date', F.to_dare(df.pickup_datetime)) \
+.groupBy('pickup_date') \
+.count() \
+.show()
+
+df \
+.withColumn('pickup_date', F.to_dare(df.pickup_datetime)) \
+.filter("pickup_date = '2021-02-15'") \
+.count()
+
+
+df \
+.withColumn('duration', df.dropoff_datetime.cast('long) - df.pickup_datetime.cast('long)) \
+.withColumn('pickup_date', F.to_date(df.pickup_datetime)) \
+.groupBy('pickup_date') \
+.max('duration') \
+.orderBy('max(duration)') \
+.limit(5) \
+.show()
+
+4.
+
+spark.sql("""
+SELECT
+    to_date(pickup_datetime) AS pickup_date
+    MAX(CAST(dropoff_datetime AS LONG) - CAST(pickup_datetime AS LONG)) AS duration
+    from fhvhv_02
+GROUP BY
+    1
+ORDER BY
+    2
+LIMIT 10
+"""    
+).show()
+
+
+5.
+
+spark.sql("""
+SELECT
+    dispaching_base_num,
+    COUNT(1)
+GROUP BY
+    1
+ORDER BY
+    2
+LIMIT 5
+"""    
+).show()
+
+check the stages in spark centre ui it varies with or without usage of LIMIT 
+
+df \
+.groupBy('dispaching_base_num') \
+.count() \
+.orderBy('count', ascending=False) \
+.limit(5) \
+.show()
+
+criteo dataset 1 tb ad click dataset
